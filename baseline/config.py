@@ -1,16 +1,18 @@
 import torch
-DEVICE = torch.device('cuda:3' if torch.cuda.is_available() else 'cpu')
+DEVICE = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 # DEVICE = torch.device('cpu')
 
-TORCH_SEED = 129
 
 
 class Config(object):
     def __init__(self):
-        self.bert_cache_path = 'bert-base-chinese'
+        self.bert_cache_path = '/home/tzh/model/bert-base-chinese'
         # self.bert_cache_path = 'hfl/chinese-roberta-wwm-ext'
-        self.train_dataset_path = "/data/lwy/Projects/CHEF/CHEF7.7/data/CHEF_train.json"
-        self.test_dataset_path = "/data/lwy/Projects/CHEF/CHEF7.7/data/CHEF_test.json"
+        # self.train_dataset_path = "/home/tzh/BRC/data/CHEF新/CHEF_train_简.json"
+        # self.test_dataset_path = "/home/tzh/BRC/data/CHEF新/CHEF_test_简.json"
+        self.train_dataset_path = "/home/tzh/BRC/data/CHEF/train_简_召回.json"
+        self.dev_dataset_path = "/home/tzh/BRC/data/CHEF/dev_简_召回.json"
+        self.test_dataset_path = "/home/tzh/BRC/data/CHEF/test_简_召回.json"
         # self.dev_dataset_path = 
         # self.train_dataset_path = "Data/train.json"
         # self.test_dataset_path = "Data/test.json"

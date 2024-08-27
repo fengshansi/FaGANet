@@ -5,7 +5,7 @@ import torch.nn.functional as F
 from torch.nn.utils.rnn import pad_sequence
 from config import DEVICE
 from gnn_layer import GraphAttentionLayer
-CACHE_DIR = "/data/lwy/from_pretrained"
+CACHE_DIR = "/home/tzh/FaGANet/from_pretrained"
 
 class Network(nn.Module):
     def __init__(self, configs):
