@@ -20,7 +20,7 @@ from torcheval.metrics import functional as FUNC
 import argparse
 parser = argparse.ArgumentParser()
 # nargs="+" 支持多个参数 且解析参数的返回值默认为list
-parser.add_argument("--TORCH_SEED", type=str, default=0)
+parser.add_argument("--TORCH_SEED", type=int, default=0)
 args = parser.parse_args()
 
 TORCH_SEED = args.TORCH_SEED
