@@ -18,6 +18,7 @@ import pickle
 
 from torcheval.metrics import functional as FUNC
 import argparse
+
 parser = argparse.ArgumentParser()
 # nargs="+" 支持多个参数 且解析参数的返回值默认为list
 parser.add_argument("--TORCH_SEED", type=int, default=0)
@@ -189,19 +190,27 @@ def evaluate(configs, test_loader, model, tokenizer):
 
     # Micro和Macro结果
     micro_result = [
-        FUNC.multiclass_f1_score(pred_list, true_list, average="micro", num_classes=NC),
-        FUNC.multiclass_recall(pred_list, true_list, average="micro", num_classes=NC),
+        FUNC.multiclass_f1_score(
+            pred_list, true_list, average="micro", num_classes=NC
+        ).item(),
+        FUNC.multiclass_recall(
+            pred_list, true_list, average="micro", num_classes=NC
+        ).item(),
         FUNC.multiclass_precision(
             pred_list, true_list, average="micro", num_classes=NC
-        ),
+        ).item(),
     ]
 
     macro_result = [
-        FUNC.multiclass_f1_score(pred_list, true_list, average="macro", num_classes=NC),
-        FUNC.multiclass_recall(pred_list, true_list, average="macro", num_classes=NC),
+        FUNC.multiclass_f1_score(
+            pred_list, true_list, average="macro", num_classes=NC
+        ).item(),
+        FUNC.multiclass_recall(
+            pred_list, true_list, average="macro", num_classes=NC
+        ).item(),
         FUNC.multiclass_precision(
             pred_list, true_list, average="macro", num_classes=NC
-        ),
+        ).item(),
     ]
 
     # 计算每个标签的f1分数
@@ -329,7 +338,7 @@ def main(configs, train_loader, dev_loader, test_loader, tokenizer):
                 early_stop_flag += 1
 
             print(
-                f"max_dev_micro_result: {max_dev_micro_result}, max_dev_macro_result: {max_dev_macro_result}\nthe_test_micro_result: {the_test_micro_result},\nthe_test_macro_result: {the_test_macro_result}"
+                f"max_dev_micro_result: {max_dev_micro_result}\nmax_dev_macro_result: {max_dev_macro_result}\nthe_test_micro_result: {the_test_micro_result}\nthe_test_macro_result: {the_test_macro_result}"
             )
 
         if early_stop_flag >= 10:
